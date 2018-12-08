@@ -1,0 +1,26 @@
+{
+  "name": "nodeversions",
+  "version": "0.0.1",
+  "description": "Report node versions based on NVM directory",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "morgan": "^1.8.1",
+    "pug": "^0.1.0"
+  },
+  "engines": {
+    "node": "7.8.0"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/nodeversions"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ]
+}
