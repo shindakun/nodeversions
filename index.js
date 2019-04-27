@@ -19,12 +19,24 @@ app.get('/health', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  let child = exec("ls -l /opt/nvm/versions/node | grep '^d\' | awk '{ print $9 }'", function (error, stdout, stderr) {
-    res.render('index', { title: 'Avaliable nodejs versions', message: stdout });
-    if (error !== null) {
-      console.log('exec error: ' + error);
-      res.status(500).send('Opps!')
+  let defaultVers = exec('node --version', function( err, versout, verserr) {
+    if (err !== null) {
+      console.log('exec error while retrieving default version: ' + err);
+      res.status(500).send('Oops!')
     }
+    let child = exec("ls -l /opt/nvm/versions/node | grep '^d' | awk '{ print $9 }'", function (error, stdout, stderr) {
+      versout = versout.trim();
+      let lines = stdout.toString().split('\n');
+      let results = '';
+      lines.forEach(function(line) {
+        results += `${line == versout ? line + ' <-- default ' : line}` + '\n';
+      });
+      res.render('index', { title: 'Avaliable nodejs versions', message: results });
+      if (error !== null) {
+        console.log('exec error while retrieving versions: ' + error);
+        res.status(500).send('Oops!')
+      }
+    });
   });
 });
 
