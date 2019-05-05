@@ -15,7 +15,8 @@
     "node": "7.8.0"
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/nodeversions"
+    "type": "git",
+    "url": "https://github.com/shindakun/nodeversions"
   },
   "license": "MIT",
   "keywords": [
